@@ -99,36 +99,33 @@ public class MenuController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteDemande(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteDemande(@PathVariable Long id) {
         try {
-            // Check if the entity exists
-            if (!submoduleRepository.existsById(id)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Submodule not found");
+             if (!submoduleRepository.existsById(id)) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
 
-            // Delete the entity
-            submoduleRepository.deleteById(id);
-            return ResponseEntity.ok("Deleted");
+             submoduleRepository.deleteById(id);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
-            // Handle exceptions
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while deleting the submodule");
+             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    
+
     @DeleteMapping("/evt/{id}")
-    public ResponseEntity<String> deleteDemandeEvt(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteDemandeEvt(@PathVariable Long id) {
         try {
             // Check if the entity exists
             if (!eventTypeRepository.existsById(id)) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Event Type not found");
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
 
             // Delete the entity
             eventTypeRepository.deleteById(id);
-            return ResponseEntity.ok("Deleted");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         } catch (Exception e) {
             // Handle exceptions
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred while deleting the event type");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
     @GetMapping("/role")
@@ -173,12 +170,12 @@ public class MenuController {
 
     
     @DeleteMapping("/Autorisation")
-    public ResponseEntity<String> deleteAuthorization(@RequestParam Long sum_id, @RequestParam Long role, @RequestParam(required = false) Long evt) {
+    public ResponseEntity<Void> deleteAuthorization(@RequestParam Long sum_id, @RequestParam Long role, @RequestParam(required = false) Long evt) {
         try {
         	admstorageautorisationDAO.deleteFromAdmautorisation(sum_id, role, evt);
-            return ResponseEntity.ok("Deleted successfully");
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting authorization: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }    

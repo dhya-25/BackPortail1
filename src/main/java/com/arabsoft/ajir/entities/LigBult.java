@@ -1,5 +1,6 @@
 package com.arabsoft.ajir.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,77 +29,78 @@ public class LigBult{
 	    @JsonFormat(pattern = "dd/MM/yyyy")
 		private Date dat_soins;
 	    @Id 
-        public Integer num_lig;
-        public Float type_act;
-        public String abrv_act;
-        public String cod_trait;
-        public String cod_mld;
-        public String num_ass;
-        public String cod_prestataire;
+	    private Integer num_lig;
+	    private Float type_act;
+	    private String abrv_act;
+        private String cod_trait;
+        private String cod_mld;
+        private String num_ass;
+        private String cod_prestataire;
         @JsonFormat(pattern = "dd/MM/yyyy")
-        public Date dat_acte;
-        public Float tot_honor;
-        public Float tot_net;
-        public Float indice_propos;
-        public Float indice;
-        public String mld;
-        public Float mnt_rembourse;
-        public Float nbr_piece;
-        public String obs_lig_bult;
-        public Float num_dent_lim1;
-        public String pos_dent_lim1;
-        public Float num_dent_lim2;
-        public String pos_dent_lim2;
-        public String mode_remb;
-        public String num_ass_conj;
-        public String mat_pers_conj;
-        public String typ_praticien;
-        public String abrv_act_acc;
-        public Float tot_net_conj;
-        public String typ_trait;
-        public Float nbr_vign;
-        public Float num_fam_bult;
-        public String typ_parent;
-        public Date dat_rembourse;
-        public Float annee_bord;
-        public Float num_bord_assur;
-        public String etat_avanc_etablis;
-        public Float mnt_eng_star;
-        public Float indice__star;
-        public Float tot_honor_star;
-        public Float tot_net_star;
-        public String abrv_act_star;
-        public Float num_av_etablis;
-        public String num_bord_etablis;
-        public String cod_etablis;
-        public Float tot_remb_comp;
-        public Float tot_honor_comp;
-        public Float mnt_etab_conv;
+        private LocalDate dat_acte;
+        private Float tot_honor;
+        private Float tot_net;
+        private Float indice_propos;
+        private Float indice;
+        private String mld;
+        private Float mnt_rembourse;
+        private Float nbr_piece;
+        private String obs_lig_bult;
+        private Float num_dent_lim1;
+        private String pos_dent_lim1;
+        private Float num_dent_lim2;
+        private String pos_dent_lim2;
+        private String mode_remb;
+        private String num_ass_conj;
+        private String mat_pers_conj;
+        private String typ_praticien;
+        private String abrv_act_acc;
+        private Float tot_net_conj;
+        private String typ_trait;
+        private Float nbr_vign;
+        private Float num_fam_bult;
+        private String typ_parent;
+        private Date dat_rembourse;
+        private Float annee_bord;
+        private Float num_bord_assur;
+        private String etat_avanc_etablis;
+        private Float mnt_eng_star;
+        private Float indice__star;
+        private Float tot_honor_star;
+        private Float tot_net_star;
+        private String abrv_act_star;
+        private Float num_av_etablis;
+        private String num_bord_etablis;
+        private String cod_etablis;
+        private Float tot_remb_comp;
+        private Float tot_honor_comp;
+        private Float mnt_etab_conv;
        
-        public String libcact;
-        public String liborg;
+        private String libcact;
+        private String liborg;
         
-        public String imput_plaf;	
-    	public Long duree_act;	
-    	public String ctr_duree;	
-    	public String a_indice;
-    	public Long plafond;
-    	public String plafonne;
-    	public Long taux_act;
-    	public Long mtt_acte;
-    	public String nat_act;
-    	public String obs_a	;
-    	public String obs;
-    	public Long mnt_remb;	
-    	public Long mnt_net	;	
-    	public Long mnt_honor;
-    	public Date dat_act	;
-    	public String prf_cod;	
-    	public String prf_typ;	
-    	public Date dat_soin;
-    	public Long num_fam	;	
-        
-		public String getCod_soc() {
+        private String imput_plaf;	
+        private Long duree_act;	
+        private String ctr_duree;	
+    	private String a_indice;
+    	private Long plafond;
+    	private String plafonne;
+    	private Long taux_act;
+    	private Long mtt_acte;
+    	private String nat_act;
+    	private String obs_a	;
+    	private String obs;
+    	private Long mnt_remb;	
+    	private Long mnt_net	;	
+    	private Long mnt_honor;
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        private LocalDate dat_act	;
+        private String prf_cod;	
+        private String prf_typ;	
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        private LocalDate dat_soin;
+        private Long num_fam	;	
+ 		public String getCod_soc() {
 			return cod_soc;
 		}
 		public void setCod_soc(String cod_soc) {
@@ -164,10 +166,10 @@ public class LigBult{
 		public void setCod_prestataire(String cod_prestataire) {
 			this.cod_prestataire = cod_prestataire;
 		}
-		public Date getDat_acte() {
+		public LocalDate getDat_acte() {
 			return dat_acte;
 		}
-		public void setDat_acte(Date dat_acte) {
+		public void setDat_acte(LocalDate dat_acte) {
 			this.dat_acte = dat_acte;
 		}
 		public Float getTot_honor() {
@@ -492,10 +494,10 @@ public class LigBult{
 		public void setMnt_honor(Long mnt_honor) {
 			this.mnt_honor = mnt_honor;
 		}
-		public Date getDat_act() {
+		public LocalDate getDat_act() {
 			return dat_act;
 		}
-		public void setDat_act(Date dat_act) {
+		public void setDat_act(LocalDate dat_act) {
 			this.dat_act = dat_act;
 		}
 		public String getPrf_cod() {
@@ -510,10 +512,10 @@ public class LigBult{
 		public void setPrf_typ(String prf_typ) {
 			this.prf_typ = prf_typ;
 		}
-		public Date getDat_soin() {
+		public LocalDate getDat_soin() {
 			return dat_soin;
 		}
-		public void setDat_soin(Date dat_soin) {
+		public void setDat_soin(LocalDate dat_soin) {
 			this.dat_soin = dat_soin;
 		}
 		public Long getNum_fam() {
@@ -524,7 +526,7 @@ public class LigBult{
 		}
 		public LigBult(String cod_soc, String mat_pers, Integer num_soins, Date dat_soins, Integer num_lig,
 				Float type_act, String abrv_act, String cod_trait, String cod_mld, String num_ass,
-				String cod_prestataire, Date dat_acte, Float tot_honor, Float tot_net, Float indice_propos,
+				String cod_prestataire, LocalDate dat_acte, Float tot_honor, Float tot_net, Float indice_propos,
 				Float indice, String mld, Float mnt_rembourse, Float nbr_piece, String obs_lig_bult,
 				Float num_dent_lim1, String pos_dent_lim1, Float num_dent_lim2, String pos_dent_lim2, String mode_remb,
 				String num_ass_conj, String mat_pers_conj, String typ_praticien, String abrv_act_acc,
@@ -591,6 +593,7 @@ public class LigBult{
 			super();
 			// TODO Auto-generated constructor stub
 		}
+ 
         
         
       

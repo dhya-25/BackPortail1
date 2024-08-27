@@ -195,5 +195,11 @@ public class BultSoinController {
 	 public List<LibBultApp> getListLigBultbultApp(@RequestParam String matPers,@RequestParam String codSoc,@RequestParam Long numFam,@RequestParam String datSoin){
  		return appDao.getLigBultApp(matPers,codSoc,numFam,datSoin);
 	}
+	
+	@CrossOrigin
+	@GetMapping("/getligbulCnam")
+	 public List<LigBult> getListLigBultbultCnam(@RequestParam String matPers,@RequestParam String codSoc,@RequestParam Long numFam,@RequestParam String datSoin){
+ 		return ligBultRep.getLigBultCnam(matPers,codSoc,numFam,datSoin);
+	}
 }
 
