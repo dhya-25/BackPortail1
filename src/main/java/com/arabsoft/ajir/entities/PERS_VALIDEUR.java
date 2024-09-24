@@ -20,7 +20,6 @@ public class PERS_VALIDEUR {
 
 	 private String  libnomprenom;
 		@Column(insertable = false, updatable = false)
-
 		private String  libnomprenomresp;
 		
 	 

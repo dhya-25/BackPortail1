@@ -340,7 +340,26 @@ System.out.println(d);
 
 		return pr ;
 	}
+	@PostMapping("/getDemByRepChefByDateRepPresid")
+	public List<Libre_demande>  getDemByRepChefByDateRepPresid(@RequestBody Libre_demande b)  {
+		 
+		String codSoc = b.getCodSoc();
+		String matPers = b.getMatPers();
+		Date datDeb = b.getDatDebut();
+		Date dateFin=b.getDatFin();
+		String reponse=b.getReponse();
+		List<Libre_demande> pr = null;
+		if(datDeb!=null&&dateFin!=null) {
+		
+		 pr= this.demandeDAO.getDemByRepChefByDateRepPresid(codSoc, matPers,datDeb,dateFin,reponse);
+		}
+		else if(datDeb==null&&dateFin==null) {
+			
+			pr= this.demandeDAO.getDemByRepChefByRepPresid(codSoc, matPers,reponse);
+		}
 
+		return pr ;
+	}
 	@PostMapping("/getDemByRepChefByDateRepRh")
 	public List<Libre_demande>  getDemByRepChefByDateRepRh(@RequestBody Libre_demande b)  {
 		 
@@ -369,12 +388,7 @@ System.out.println(d);
 		Date datDeb = b.getDatDebut();
 		Date dateFin=b.getDatFin();
 		String reponse=b.getReponse();
-		String matPers=b.getMatPers();
-		System.out.println("Matpers  : "+matPers);
-		System.out.println("codSoc  : "+codSoc);
-		System.out.println("datDeb  : "+datDeb);
-		System.out.println("dateFin  : "+dateFin);
-		System.out.println("reponse  : "+reponse);
+		String matPers=b.getMatPers(); 
 
 		List<Libre_demande> pr = this.demandeDAO.getDemRH(codSoc,datDeb,dateFin,reponse);
 	
@@ -386,6 +400,14 @@ System.out.println(d);
 	public List<Libre_demande>  getDemByRepChefByRep(@PathVariable String codSoc,@PathVariable String matPers,@PathVariable String reponse)  {
 		 
 						return this.demandeDAO.getDemByRepChefByRep(codSoc, matPers,reponse);
+	
+	}
+	
+	@CrossOrigin
+	@GetMapping("/getDemByRepChefByRepPresid/{codSoc}/{matPers}/{reponse}")
+	public List<Libre_demande>  getDemByRepChefByRepPresid(@PathVariable String codSoc,@PathVariable String matPers,@PathVariable String reponse)  {
+		 
+						return this.demandeDAO.getDemByRepChefByRepPresid(codSoc, matPers,reponse);
 	
 	}
 	@CrossOrigin

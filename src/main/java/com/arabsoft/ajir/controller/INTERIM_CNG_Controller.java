@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.arabsoft.ajir.dao.AttachmentDemandeDao;
 import com.arabsoft.ajir.dao.INTERIM_CNG_Dao;
 import com.arabsoft.ajir.dao.InterimEntityDao;
+import com.arabsoft.ajir.entities.AttachmentDemande;
 import com.arabsoft.ajir.entities.INTERIM_LIBRE_DEM;
 import com.arabsoft.ajir.entities.InterimEntity;
 
@@ -29,6 +31,7 @@ import com.arabsoft.ajir.entities.InterimEntity;
 class INTERIM_CNG_Controller {
 	@Autowired INTERIM_CNG_Dao interim;
 	@Autowired InterimEntityDao entityDao;
+	@Autowired AttachmentDemandeDao attachmentDemandeDao;
 	@PostMapping("/save/{idcng}")
 	public void save (@RequestBody List <INTERIM_LIBRE_DEM> aa,@PathVariable("idcng") long idcng ) {
 		for(int i =0;i<aa.size();i++ ) {
@@ -82,21 +85,29 @@ class INTERIM_CNG_Controller {
 	  }
 	  
 	  @DeleteMapping("/DeleteDem/{id}")
-	  
-	  public void DeleteDemande(@PathVariable("id") Long id) {
-		  try {  
-			  interim.DeleteInterimById(id);
-				interim.commit();
-		  }
-		  catch (Exception e) {
-			System.out.println(e);
+	  public void deleteDemande(@PathVariable("id") Long id) {
+	      try {
+	          // Suppression de l'intérim associé à la demande
+	          interim.DeleteInterimById(id);
+	          interim.commit();
+	      } catch (Exception e) {
+	          System.out.println("Erreur lors de la suppression de l'intérim : " + e.getMessage());
+	      }
+
+	      try {
+	          // Suppression de toutes les pièces jointes associées à la demande
+	          List<AttachmentDemande> attachments = attachmentDemandeDao.getAttachmentByIdDemande(id);
+	          if (attachments != null && !attachments.isEmpty()) {
+	              attachmentDemandeDao.deleteAll(attachments);
+	          }
+
+ 	          interim.DeleteDemande(id);
+	          interim.commit();
+	      } catch (Exception e) {
+	          System.out.println("Erreur lors de la suppression de la demande et des pièces jointes : " + e.getMessage());
+	      }
 	  }
-		  try {    
-		   interim.DeleteDemande(id);
-		   interim.commit();
-		  }
-		  catch (Exception e) {
-			System.out.println(e);
-	  }  	  
-	  } 
+
+
+
 }

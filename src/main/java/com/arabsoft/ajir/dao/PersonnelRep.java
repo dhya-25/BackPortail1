@@ -634,7 +634,7 @@ public interface PersonnelRep extends JpaRepository<Personnel, ClePersonnel>{
 			+" pk_get_lib.GET_TYPE_DEPAR$LIB_TYP_DEPART(cod_typ_depart) lib_depart ,"
 			
 			+"(select 'Solde actuelle: '||s.annee_cng||' est '|| s.sold_cng from sold_cng s where  mat_pers =:mat  and annee_cng =(select max(annee_cng) from sold_cng where cod_soc = s.cod_soc and mat_pers = s.mat_pers))lastsoldecng \r\n"  
-  			+ "  from personnel where mat_pers <>:mat order by nom_pers,mat_pers"  , nativeQuery = true)
+  			+ "  from personnel   order by nom_pers,mat_pers"  , nativeQuery = true)
 
 	public List <Personnel> getPersonelles(@Param("mat")String mat); 
 

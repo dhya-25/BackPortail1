@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Id;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -44,4 +45,8 @@ public interface PERS_VALIDEUR_Dao extends JpaRepository<PERS_VALIDEUR, Cle_PERS
 	
 	@Query(value="update pers_valideur set niveau=:niv where cod_soc=:soc and mat_pers=:mat and mat_resp=:mat_resp",nativeQuery=true)
 	public void updatePersValid(@Param("soc") String soc,@Param("mat") String mat,@Param("mat_resp") String mat_resp,@Param("niv") Long niv);
+	
+	@Modifying
+	@Query(value = "DELETE FROM pers_valideur WHERE cod_soc = :soc AND mat_pers = :mat AND mat_resp = :mat_resp", nativeQuery = true)
+	void DeletePersValideur(@Param("soc") String soc, @Param("mat") String mat, @Param("mat_resp") String mat_resp);
 }
